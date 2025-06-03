@@ -1,3 +1,4 @@
+import Navbar from "@/components/layouts/navbar";
 import { strapi } from "@/lib/strapi";
 
 export default async function Home() {
@@ -14,7 +15,7 @@ export default async function Home() {
 
   return (
     <div>
-      <h1>Sahibinden Clone</h1>
+      <Navbar />
       <ul>
         {data.map((item) => (
           <li key={item.id}>
