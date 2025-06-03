@@ -1,4 +1,5 @@
 import Navbar from "@/components/layouts/navbar";
+import AdCardUi from "@/components/ui/ad-card-ui";
 import { strapi } from "@/lib/strapi";
 
 export default async function Home() {
@@ -16,22 +17,7 @@ export default async function Home() {
   return (
     <div>
       <Navbar />
-      <ul>
-        {data.map((item) => (
-          <li key={item.id}>
-            {item.title} -{" "}
-            {item.price.toLocaleString("tr-TR", {
-              style: "currency",
-              currency: "TRY",
-            })}
-            {
-              item.details.find((detail) =>
-                detail.__component.includes(item.category.slug)
-              )?.housingType
-            }
-          </li>
-        ))}
-      </ul>
+      <AdCardUi />
     </div>
   );
 }

@@ -1,11 +1,16 @@
-import { Search } from "lucide-react";
+"use client";
+
 import { Button } from "../ui/button";
 import { ThemeToggle } from "../ui/toggle-theme";
+import { Input } from "../ui/input";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const router = useRouter();
+
   return (
-    <div className="flex justify-baseline gap-4 bg-[#19BA1A] dark:bg-[#F97A00] ">
-      <span>Ownerly</span>
+    <div className="flex justify-center items-stretch gap-4 bg-[#19BA1A] dark:bg-[#F97A00] ">
+      <span className="text-white text-2xl font-bold">OWNERLY</span>
       <ul className="flex justify-center gap-4">
         <li>
           <Button className="cursor-pointer">
@@ -13,11 +18,25 @@ export default function Navbar() {
           </Button>
         </li>
         <li className="flex">
-          <input type="text" placeholder="Search by word or store name" />
-          <Search className="text-white" />
+          <Input type="text" placeholder="Search by word or store name" />
+          <Button type="submit" variant="outline">
+            Search
+          </Button>
         </li>
         <li>
           <Button className="cursor-pointer">Contact</Button>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <Button
+            onClick={() => {
+              router.push("/login");
+            }}
+            className="cursor-pointer"
+          >
+            Login/Sign Up
+          </Button>
         </li>
       </ul>
       <ThemeToggle />

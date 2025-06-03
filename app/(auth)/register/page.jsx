@@ -28,7 +28,7 @@ export default function Page() {
         <input type="text" name="username" placeholder="Username" /> <br />
         <input type="text" name="email" placeholder="E-mail" /> <br />
         <input type="password" name="password" placeholder="Password" /> <br />
-        <button className="border px-3 py-2 rounded-md">Register</button>
+        <button className="border px-3 py-2 rounded-md">Sign up</button>
       </form>
     </div>
   );

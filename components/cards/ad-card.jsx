@@ -1,29 +1,34 @@
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { strapi } from "@/lib/strapi";
 
-export default function AdCard() {
+export default async function AdCard() {
+  const { data } = await strapi.find("ads", {
+    populate: {
+      category: {
+        fields: ["name", "slug"],
+      },
+      details: true,
+    },
+  });
+  console.log(data);
+  console.log(data[0].details);
   return (
     <div>
-      <Card>
-        <CardHeader>
-          <CardTitle>Card Title</CardTitle>
-          <CardDescription>Card Description</CardDescription>
-          <CardAction>Card Action</CardAction>
-        </CardHeader>
-        <CardContent>
-          <p>Card Content</p>
-        </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter>
-      </Card>
+      <ul>
+        {data.map((item) => (
+          <li key={item.id}>
+            {item.title} -{" "}
+            {item.price.toLocaleString("tr-TR", {
+              style: "currency",
+              currency: "TRY",
+            })}
+            {
+              item.details.find((detail) =>
+                detail.__component.includes(item.category.slug)
+              )?.housingType
+            }
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
