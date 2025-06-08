@@ -4,9 +4,11 @@ import { Button } from "../ui/button";
 import { ThemeToggle } from "../ui/toggle-theme";
 import { Input } from "../ui/input";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/components/providers/auth-provider";
 
 export default function Navbar() {
   const router = useRouter();
+  const { isAuthenticated } = useAuth();
 
   return (
     <div className="flex justify-center items-stretch gap-4 bg-[#19BA1A] dark:bg-[#F97A00] ">
@@ -35,7 +37,7 @@ export default function Navbar() {
             }}
             className="cursor-pointer"
           >
-            Login/Sign Up
+            {isAuthenticated ? "Log out" : "Login/Sign Up"}
           </Button>
         </li>
       </ul>

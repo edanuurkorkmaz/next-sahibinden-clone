@@ -1,5 +1,5 @@
+import AdCard from "@/components/cards/ad-card";
 import Navbar from "@/components/layouts/navbar";
-import AdCardUi from "@/components/ui/ad-card-ui";
 import { strapi } from "@/lib/strapi";
 
 export default async function Home() {
@@ -16,8 +16,8 @@ export default async function Home() {
 
   return (
     <div>
-      <Navbar />
-      <AdCardUi />
+      <Navbar data={data} />
+      <AdCard />
     </div>
   );
 }
